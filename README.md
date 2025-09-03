@@ -164,3 +164,6 @@ cd <your-project-folder>
 
 api key for google 
 AIzaSyD6fTSwlWgsI9e2eIRz2BPXrqAxcTzid3c
+
+
+npm install eslint-plugin-jsx-a11y --save-dev
