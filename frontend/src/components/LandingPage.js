@@ -3,12 +3,59 @@ import Register from './Register';
 import Login from './Login';
 import { FaLeaf, FaHandsHelping, FaRecycle } from 'react-icons/fa';
 
+/* ---------------------- Accordion Item ---------------------- */
+const AccordionItem = ({ question, answer }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="border rounded-lg shadow-sm bg-white">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-green-700 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-600/30"
+        aria-expanded={open}
+      >
+        <span>{question}</span>
+        <span className="text-xl leading-none select-none">{open ? '−' : '+'}</span>
+      </button>
+      {open && (
+        <div className="px-5 py-3 text-gray-600 border-t">
+          {answer}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/* ---------------------- Landing Page ---------------------- */
 const LandingPage = () => {
   const [page, setPage] = useState('landing'); // landing, register, login
 
   if (page === 'register') return <Register goBack={() => setPage('landing')} />;
   if (page === 'login') return <Login goBack={() => setPage('landing')} />;
 
+  const faqItems = [
+    {
+      question: '🌱 How can I report a waste issue?',
+      answer:
+        "Register, go to 'Report Issue', drop a pin on the map, add details/photos, and submit. You'll get live status updates."
+    },
+    {
+      question: '🤝 How do I join an NGO campaign?',
+      answer:
+        "Open the Campaigns section, choose an active drive, and click 'Participate'. You'll receive event time, venue, and coordinator info."
+    },
+    {
+      question: '💚 Can I donate items through GreenBandhan?',
+      answer:
+        'Yes. Use Donations to list items, pick a pickup/drop option, and track when an NGO/volunteer collects them.'
+    },
+    {
+      question: '📍 How are nearby parks shown?',
+      answer:
+        'We use map integration to show green spaces near you with oxygen ratings, features, and maintenance feedback.'
+    }
+  ];
   return (
     <div className="font-sans">
       {/* Navbar */}
@@ -114,6 +161,19 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+ {/* Accordion Section (FAQ) */}
+      <section id="faq" className="py-20 max-w-6xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-10 text-green-700">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {faqItems.map((item, idx) => (
+            <AccordionItem key={idx} question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </section>
+
 
       {/* Call to Action Section */}
       <section id="cta" className="py-20 text-center bg-green-50">
