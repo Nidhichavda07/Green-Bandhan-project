@@ -4,7 +4,7 @@ import LandingPage from './components/LandingPage';
 import Donations from './components/Donations';
 import MainPage from './components/MainPage';
 import Login from './components/Login';
-
+import AdminDashboard from './AdminDashboard'
 import WasteReport from './components/WasteReport';
 import Park from './components/Parks';
 
@@ -19,6 +19,7 @@ function App() {
         <Route path="/wastereport" element={<WasteReport />} />
         <Route path="/login" element={<Login />} />
         <Route path="/park" element={<Park />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );
